@@ -36,8 +36,8 @@ function Bestplaces() {
     <div className='w-full md:w-[90%] mx-auto bg-white rounded-2xl py-10 grid grid-cols-1 md:grid-cols-4 gap-6 animate-fadeIn'>
     {four.map((place) =>{
       return (
-      <div  key={place._id}  className='w-full h-80 hover:scale-105 transition-transform duration-300 rounded-xl overflow-hidden bg-gray-100'>
-       <div className='w-[90%] mx-auto mt-2 h-40 md:mx-0 hover:scale-105 transition-transform duration-300'>
+      <div  key={place._id}  className='w-full min-h-80 hover:scale-105 transition-transform duration-300 rounded-xl overflow-hidden bg-gray-100'>
+       <div className='w-[90%] mx-auto mt-2 h-40  hover:scale-105 transition-transform duration-300'>
       <img src={`http://localhost:5000/uploads/${place.image}`}  className='h-full w-full rounded-xl hover:animate-pulse'/>
     </div>
        <div className='p-3'>
@@ -65,9 +65,9 @@ function Bestplaces() {
     <div className='w-full md:w-[90%] mx-auto bg-white rounded-2xl py-10 grid grid-cols-1 md:grid-cols-4 gap-6 animate-fadeIn'>
     {eight.map((place) =>{
       return (
-      <div  key={place._id}  className='w-full h-80 hover:scale-105 transition-transform duration-300 rounded-xl overflow-hidden bg-gray-100'>
-       <div className='w-[90%] mx-auto mt-2 h-40 md:mx-0 hover:scale-105 transition-transform duration-300'>
-      <img src={`http://localhost:5000/uploads/${place.image}`}  className='h-full w-full mx-auto rounded-xl hover:animate-pulse'/>
+      <div  key={place._id}  className='w-full min-h-80 hover:scale-105 transition-transform duration-300 rounded-xl overflow-hidden bg-gray-100'>
+       <div className='w-[90%] mx-auto mt-2 h-40 hover:scale-105 transition-transform duration-300'>
+      <img src={`http://localhost:5000/uploads/${place.image}`}  className='h-full w-full mx-auto object-cover rounded-xl hover:animate-pulse'/>
     </div>
        <div className='p-3'>
                 <p className='text-center font-bold text-xl mb-2'>{place.name}</p>
@@ -96,7 +96,7 @@ function Bestplaces() {
    <div className='w-full md:w-[90%] mx-auto  rounded-2xl py-10 grid grid-cols-1 md:grid-cols-4 gap-6 animate-fadeIn'>
     { twelve .map((place) =>{
       return (
-      <div  key={place._id}  className='w-full h-80 hover:scale-105 transition-transform duration-300 rounded-xl overflow-hidden'>
+      <div  key={place._id}  className='w-full min-h-80 hover:scale-105 transition-transform duration-300 rounded-xl overflow-hidden'>
        <div className='w-[90%] mx-auto mt-2 h-40 md:mx-0 hover:scale-105 transition-transform duration-300'>
       <img src={`http://localhost:5000/uploads/${place.image}`}  className='h-full w-full rounded-xl hover:animate-pulse'/>
     </div>

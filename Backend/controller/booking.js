@@ -46,3 +46,27 @@ export const deleteBooking = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
+
+
+export const getMyBooking = async (req, res) => {
+  try {
+    const bookings = await Booking.find({email:req.user.email}).populate("packageId").sort({ date: -1 });
+
+    if (bookings.length === 0) {
+      return res.status(404).json({
+        msg: "No bookings yet"
+      });
+    }
+
+    res.status(200).json({
+      bookings: bookings
+    });
+
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({
+      message: "Something went wrong"
+    });
+  }
+};

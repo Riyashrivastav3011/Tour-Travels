@@ -20,9 +20,10 @@ function LoginForm() {
   const submit = async (e) =>{
    e.preventDefault();
    try{
-    const res = await axios.post('http://localhost:5000/api/login' , form)
+    const res = await axios.post('http://localhost:5000/api/login' , form ,{
+      withCredentials:true
+    });
      // store token
-    localStorage.setItem('token', res.data.token);
    localStorage.setItem('user', JSON.stringify(res.data.user));
     Swal.fire({
         title: "Success!",

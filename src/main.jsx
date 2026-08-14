@@ -21,7 +21,7 @@ import Adminlogin from './components/AdminZone/Adminlogin.jsx'
 import Schroll from './components/Schroll.jsx'
 import Protected from './components/AdminZone/Protected.jsx'
 import { BrowserRouter , Routes , Route , Navigate} from 'react-router-dom'
-
+import  Userprofile  from './components/generalZone/Userprofile.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -37,6 +37,8 @@ createRoot(document.getElementById('root')).render(
     <Route path='/login' element={<Login/>}></Route>
     <Route path='/placedetail/:id' element={<Placedetail />}></Route>
     <Route path='/contact' element={<Contact/>}></Route>
+    <Route path='/profile' element={<Userprofile/>}></Route>
+
 
     <Route path='/admin' element={<Navigate to="/admin/login" />} />
     <Route path='/admin/login' element={<Adminlogin />} />

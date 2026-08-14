@@ -86,10 +86,12 @@ function Home() {
             options:
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <Link to='/bestplaces' className="h-10 w-36 border-2 pt-2 border-gray-400 rounded hover:bg-blue-600 hover:text-white transition">
+            <Link to='/bestplaces'
+             className="h-10 w-36 border-1 pt-1 border-gray-400 btn hover:bg-[#6888f2] hover:rounded-2xl hover:text-white transition">
               Hotels
             </Link>
-            <Link to='/packages' className="h-10 w-36 border-2 pt-2 border-gray-400 rounded hover:bg-blue-600 hover:text-white transition">
+            <Link to='/packages' 
+             className="h-10 w-36 border-1 pt-1 border-gray-400 btn hover:bg-[#6888f2] hover:rounded-2xl hover:text-white transition">
               Experiences
             </Link>
           </div>
@@ -193,21 +195,40 @@ function Home() {
       </p>
 
       {/* Card Container */}
-      <div className="flex flex-wrap justify-center gap-4 px-4 md:px-10 mt-6">
-        {/* Single Card */}
-        {firstFour.map((pkg , index) =>(
-   <div key={index} className="bg-white border border-gray-300 p-2 pb-5 w-[90%] sm:w-[45%] md:w-[22%]">
-          <img src={`http://localhost:5000/uploads/${pkg.image}`}  alt="Europe" className="h-3/4 w-full object-cover" />
-          <div className="flex justify-between items-center mt-2">
-           <span> <p className="font-medium font-poppins">{pkg.description}</p>
-            <p className="text-blue-800 text-2xl">{pkg.price}</p>
-       </span>  
-       <Link to='/packages' className=" hover:text-[#6888f2]">More packages</Link>
-        </div>
-        </div> 
-        ) )}
       
+      <div className="flex flex-wrap justify-center gap-4 px-4 md:px-10 mt-6">
+  {/* Single Card */}
+  {firstFour.map((pkg, index) => (
+    <div
+      key={index}
+      className="bg-white border border-gray-300 p-2 pb-5 w-[90%] sm:w-[45%] md:w-[22%]"
+    >
+      <img
+        src={`http://localhost:5000/uploads/${pkg.image}`}
+        alt="Europe"
+        className="h-3/4 w-full object-cover"
+      />
+      <div className="flex justify-between items-center mt-2">
+        <span>
+          <p className="font-medium font-poppins text-[clamp(11px,2.5vw,14px)]">
+            {pkg.description}
+          </p>
+          <p className="text-blue-800 font-semibold text-[clamp(14px,3vw,20px)]">
+            {pkg.price}
+          </p>
+        </span>
+
+        <Link
+          to="/packages"
+          className="text-[clamp(9px,2vw,12px)] hover:text-[#6888f2]"
+        >
+          More packages
+        </Link>
       </div>
+    </div>
+  ))}
+</div>
+
     </div>
 <Msg/>
 <Footer/>

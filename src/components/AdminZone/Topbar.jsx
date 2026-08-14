@@ -1,6 +1,19 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Topbar() {
+  const navigate = useNavigate();
+  const logout = async () =>{
+    try{
+      const response = await axios.post("http://localhost:5000/admin/logout",{} , {withCredentials:true});
+      if(response.data.success){
+          navigate("/admin/login");
+      }
+    }catch(err){
+      console.log("error" , err);
+    }
+  }
   return (
    <header className="bg-white p-4 shadow-md flex justify-between items-center">
       {/* Page Title */}
@@ -20,7 +33,8 @@ export default function Topbar() {
         </div>
 
         {/* Logout */}
-        <button className="text-gray-600 hover:text-sky-400 transition-colors">
+        <button  onClick={logout}
+         className="text-gray-600 hover:text-sky-400 transition-colors">
           Logout
         </button>
       </div>

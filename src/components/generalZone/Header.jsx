@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { FaSearch, FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import Logo from "../../images/Logo.png";
 import '../../App.css';
 import { Link } from 'react-router-dom'
@@ -12,16 +12,11 @@ function Header() {
           {/* Left: Logo + Search */}
           <div className="flex items-center justify-between w-[25%]">
             <img src={Logo} alt="Logo" className="h-7 mx-6 md:h-10 lg:h-12" />
-            <span 
-            className="hidden sm:flex items-center space-x-2 p-2  text-gray-600 font-medium">
-              <FaSearch className="text-gray-600 text-lg" />
-              <span>search</span>
-              </span>
           </div>
 
           {/* Menu (only on large screens) */}
           <nav className="hidden lg:block w-3/4 mx-10 ms-30">
-            <ul className="flex justify-between text-gray-600 font-medium">
+            <ul className="flex justify-between items-center text-gray-600 font-medium">
               <li className="relative group">
                 <Link to="/"  
                 className="transition-colors duration-300 hover:text-blue-600">
@@ -55,11 +50,24 @@ function Header() {
  <li className="me-6 relative group"><Link to="/contact" className="transition-colors duration-300 hover:text-blue-600" >Contact</Link>
                <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
 </li>
+              {/* User profile icon - last item in the desktop nav */}
+              <li className="relative group">
+                <Link
+                  to="/profile"
+                  aria-label="User profile"
+                  className="flex items-center transition-colors duration-300 hover:text-blue-600"
+                >
+                  <FaUserCircle className="text-xl" />
+                </Link>
+              </li>
             </ul>
           </nav>
 
-          {/* Hamburger icon (only visible on mobile/tablet) */}
-          <div className="lg:hidden flex items-center">
+          {/* Right side on mobile/tablet: user icon + hamburger */}
+          <div className="lg:hidden flex items-center gap-4">
+            <Link to="/profile" aria-label="User profile" className="text-gray-700">
+              <FaUserCircle className="text-2xl" />
+            </Link>
             <FaBars
               className="text-gray-700 text-2xl cursor-pointer"
               onClick={() => setOpen(true)}
@@ -89,6 +97,10 @@ function Header() {
               <li><Link to="/packages">Our Packages</Link></li>
               <li className="me-6"><Link to="/login">Login</Link></li>
               <li><Link to="/contact">Contact</Link></li>
+              <li className="flex items-center gap-2">
+                <FaUserCircle className="text-lg" />
+                <Link to="/profile">My Profile</Link>
+              </li>
           </ul>
         </div>
 

@@ -34,23 +34,37 @@ export const adminLogin = async (req, res) => {
 
         // Create token
         const token = jwt.sign(
-            { id: admin._id, role: admin.role },
+            { id: admin._id, role: "admin" },
             process.env.JWT_SECRET,
             { expiresIn: "7d" }
         );
 
+        res.cookie('admintoken' , token ,{
+            httpOnly:true,
+            sameSite:'lax',
+            secure:'true',
+            maxAge:24 * 60 * 60* 1000
+        })
+
         return res.status(200).json({
             message: "Admin login successful",
-            token,
-            admin: {
-                id: admin._id,
-                email: admin.email
-            }
-        });
+            admin: { id: admin._id, email: admin.email }
+           });
 
     }catch (error) {
         return res.status(500).json({ message: "Server error", error });
     }
 };
 
+export const adminLogout = (req , res) =>{
+    res.clearCookie('adminToken' , {
+        httpOnly:true,
+        secure:false,
+        sameSite:'lax'
+    });
 
+    res.status(200).json({
+       msg:'logout',
+       success:true
+    })
+}
