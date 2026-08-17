@@ -1,4 +1,4 @@
-import Booking from "../models/Booking.js";
+import Booking from "../models/booking.js";
 import { verifyPayment } from './paymentController.js'
 
 export const createBooking = async (req, res) => {

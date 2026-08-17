@@ -1,4 +1,4 @@
-import Place from '../models/destinations.js'
+import Place from "../models/destinations.js"
 
 // add places 
 export const createPlace = async (req , res) =>{
