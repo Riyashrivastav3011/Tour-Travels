@@ -1,7 +1,15 @@
 import Booking from "../models/Booking.js";
+import { verifyPayment } from './paymentController.js'
 
 export const createBooking = async (req, res) => {
     try {
+        const  {razorpay_order_id, razorpay_payment_id, razorpay_signature} = req.body; 
+        const isVarified =  verifyPayment(razorpay_order_id , razorpay_payment_id , razorpay_signature);
+        if(!isVarified){
+            return res.status(400).json({
+                msg : "not verified",
+            })
+        }
         const newBooking = new Booking(req.body);
         const saved = await newBooking.save();
 

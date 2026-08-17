@@ -11,7 +11,7 @@ import {
 
 const router = express.Router();
 
-router.post("/bookings", createBooking);
+router.post("/bookings", verifyUser ,  createBooking);
 router.get("/bookings", getAllBookings);
 router.get("/bookings/:id", getSingleBooking);
 router.delete("/bookings/:id", deleteBooking);

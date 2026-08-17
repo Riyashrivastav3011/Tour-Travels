@@ -63,8 +63,8 @@ if(!match){
  process.env.JWT_SECRET, { expiresIn: '1d' });
  res.cookie("token" , token ,{
   httpOnly:true,
-  secure:false,
-  sameSite:"lax",
+  secure:true,
+  sameSite:"none",
   maxAge:24 * 60 * 60 * 1000
  });
  res.json({
@@ -104,8 +104,8 @@ export const getUserProfile = async (req , res) =>{
 export const userLogout = (req, res) => {
   res.cookie("token", "", {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax",
+    secure: true,
+    sameSite: "none",
     expires: new Date(0)
   });
 

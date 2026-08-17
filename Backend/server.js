@@ -10,6 +10,7 @@ import bookingRoutes from './routes/booking.js'
 import placeRoutes from './routes/destinations.js'
 import Packagemodel from './models/package.js'
 import cookieParser from 'cookie-parser'
+import razorpayRoute from './routes/razorpayRoutes.js'
 import { fileURLToPath } from "url";
 import path from 'path'
 
@@ -22,7 +23,6 @@ app.use(cors({
   credentials:true
 }));
  
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -35,6 +35,7 @@ app.use('/admin' , enquiresRoutes);
 app.use('/admin' , packageRoutes);
 app.use('/destinations' , placeRoutes);
 app.use("/admin", bookingRoutes);
+app.use("/pay", razorpayRoute);
 
 const PORT = process.env.PORT || 8000;
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true,

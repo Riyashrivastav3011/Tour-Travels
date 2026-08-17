@@ -41,8 +41,8 @@ export const adminLogin = async (req, res) => {
 
         res.cookie('admintoken' , token ,{
             httpOnly:true,
-            sameSite:'lax',
-            secure:'true',
+            sameSite:"none",
+            secure:true,
             maxAge:24 * 60 * 60* 1000
         })
 
@@ -59,8 +59,8 @@ export const adminLogin = async (req, res) => {
 export const adminLogout = (req , res) =>{
     res.clearCookie('adminToken' , {
         httpOnly:true,
-        secure:false,
-        sameSite:'lax'
+        secure:true,
+        sameSite:'none'
     });
 
     res.status(200).json({

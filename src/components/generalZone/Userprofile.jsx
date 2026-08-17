@@ -52,7 +52,6 @@ function Userprofile() {
           }
         );
 
-        console.log("USER PROFILE:", res.data);
 
         setUser({
           username: res.data.username || "",
@@ -93,9 +92,6 @@ function Userprofile() {
             withCredentials: true,
           }
         );
-
-        console.log("BOOKINGS:", res.data);
-
         setBookings(res.data.bookings || []);
       } catch (error) {
         console.log(

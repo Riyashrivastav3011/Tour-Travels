@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 function Booknow() {
   const { id } = useParams();
   const [pkg, setPkg] = useState(null);
+  const [totalprice , settotalprice] = useState(0);
 
   const [form, setForm] = useState({
     name: "",
@@ -41,27 +42,48 @@ function Booknow() {
       .catch((err) => console.log(err));
   }, [id]);
 
+
+  useEffect(() =>{
+    const cleanPrice = form.packagePrice.replace("$", "");
+    const total = Number(cleanPrice) * Number(form.travelers);
+    settotalprice(total);
+
+  } , [form.packagePrice , form.travelers]);
   // Handle form input changes
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   // Submit booking
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-   try{
-     axios
-      .post("http://localhost:5000/admin/bookings", form)
-      .then(() =>{
-        Swal.fire({
+ const handleSubmit = (e) => {
+  e.preventDefault();
+  try{
+    axios.post("http://localhost:5000/pay/order" , {amount : totalprice})
+    .then((res) => {
+      console.log("2. Order create response:", res.data);   
+      const options = {
+        key : res.data.key,
+        amount : res.data.amount,
+        currency : res.data.currency,
+        order_id : res.data.orderId,
+        name:"Adventure and freedom",
+        prefill :{
+          name:form.name,
+          email:form.email,
+          contact:form.phone
+        },
+        handler : function(response){
+           console.log("4. Payment successful, response:", response);  
+          axios.post("http://localhost:5000/admin/bookings", form)
+          .then(() =>{
+             console.log("5. Booking saved successfully"); 
+            Swal.fire({
           title: "Success!",
           text: "Booking Confirmed Successfully!",
           icon: "success",
           confirmButtonText: "OK",
-        })
-
-         setForm(prev => ({
+         })
+          setForm(prev => ({
         ...prev,
         name: "",
         email: "",
@@ -69,17 +91,28 @@ function Booknow() {
         travelers: "",
         date: "",
       }));
-   })
-   }catch(err){
-        Swal.fire({
+          })
+        }
+      }
+
+       console.log("3. Options ready, opening Razorpay:", options); 
+    const razorpayObject = new window.Razorpay(options);
+    razorpayObject.open();
+    })
+     .catch((err) => {
+        console.log("ORDER CREATE FAILED:", err);   // <-- yahan
+      });
+
+  }catch(err){
+     Swal.fire({
           title: "Error!",
           text: err.response?.data?.message || "Something went wrong!",
           icon: "error",
           confirmButtonText: "Try Again",
         });
         console.log(err);
-      };
-  };
+  }
+ }
 
   if (!pkg) {
     return (
@@ -194,6 +227,15 @@ function Booknow() {
                 placeholder="Number of Travellers"
                 className="w-full p-3 border rounded-xl"
                 required
+              />
+
+               <input
+                type="text"
+                name="totalprice"
+                value={totalprice}
+                placeholder="total price"
+                className="w-full p-3 border rounded-xl"
+                readOnly
               />
 
               <input
