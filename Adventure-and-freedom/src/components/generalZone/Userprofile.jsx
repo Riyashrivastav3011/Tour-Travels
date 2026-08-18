@@ -46,7 +46,7 @@ function Userprofile() {
         setLoading(true);
 
         const res = await axios.get(
-          "http://localhost:5000/api/profile",
+          `${import.meta.env.VITE_API_URL}/api/profile`,
           {
             withCredentials: true,
           }
@@ -87,7 +87,7 @@ function Userprofile() {
     const getBookings = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/admin/getbookings",
+          `${import.meta.env.VITE_API_URL}/admin/getbookings`,
           {
             withCredentials: true,
           }
@@ -145,7 +145,7 @@ function Userprofile() {
   const logout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/logout",
+        `${import.meta.env.VITE_API_URL}/api/logout`,
         {},
         {
           withCredentials: true,

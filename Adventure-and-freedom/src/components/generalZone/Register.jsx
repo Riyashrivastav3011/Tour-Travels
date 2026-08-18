@@ -36,7 +36,7 @@ function Register({ setIsLogin }) {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:5000/api/register', Form);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, Form);
 
       Swal.fire({
         title: "Success!",

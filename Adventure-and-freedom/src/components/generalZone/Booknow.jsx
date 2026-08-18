@@ -26,7 +26,7 @@ function Booknow() {
   // Fetch package details
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/admin/package/${id}`)
+      .get(`${import.meta.env.VITE_API_URL}/admin/package/${id}`)
       .then((res) => {
         setPkg(res.data);
 
@@ -58,7 +58,7 @@ function Booknow() {
  const handleSubmit = (e) => {
   e.preventDefault();
   try{
-    axios.post("http://localhost:5000/pay/order" , {amount : totalprice})
+    axios.post(`${import.meta.env.VITE_API_URL}/pay/order` , {amount : totalprice})
     .then((res) => {
       console.log("2. Order create response:", res.data);   
       const options = {
@@ -74,7 +74,7 @@ function Booknow() {
         },
         handler : function(response){
            console.log("4. Payment successful, response:", response);  
-          axios.post("http://localhost:5000/admin/bookings", form)
+          axios.post(`${import.meta.env.VITE_API_URL}/admin/bookings`, form)
           .then(() =>{
              console.log("5. Booking saved successfully"); 
             Swal.fire({
@@ -137,7 +137,7 @@ function Booknow() {
           transition={{ duration: 0.6 }}
         >
           <img
-            src={`http://localhost:5000/uploads/${pkg.image}`}
+            src={`${import.meta.env.VITE_API_URL}/uploads/${pkg.image}`}
             className="rounded-xl w-[350px] md:w-[420px] mx-auto shadow-2xl"
             alt={pkg.description}
           />

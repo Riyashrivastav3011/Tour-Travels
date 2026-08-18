@@ -13,7 +13,7 @@ function Cards() {
     } , []);
   
      const showPlaces = async () =>{
-        const res = await axios.get('http://localhost:5000/destinations/place');
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/destinations/place`);
         setPlaces(res.data);
      }
 
@@ -82,7 +82,7 @@ function Cards() {
             {[...(remains || []), ...(remains || [])].map((img, index) => (
               <div key={index} className="shrink-0">
                 <img
-                  src={`http://localhost:5000/uploads/${img.image}`} 
+                  src={`${import.meta.env.VITE_API_URL}/uploads/${img.image}`} 
                   alt={`Slide ${index}`}
                   className="rounded-xl w-[200px] sm:w-60 md:w-[280px] h-[220px] sm:h-[260px] md:h-80 object-cover border border-gray-300"
                   onClick={() => navigate('/bestplaces')}

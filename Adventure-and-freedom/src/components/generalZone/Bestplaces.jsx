@@ -16,7 +16,7 @@ function Bestplaces() {
   } , []);
 
    const showPlaces = async () =>{
-      const res = await axios.get('http://localhost:5000/destinations/place');
+      const res = await axios.get(`${import.meta.env.API_URL}/destinations/place`);
       setPlaces(res.data);
    }
   
@@ -38,7 +38,7 @@ function Bestplaces() {
       return (
       <div  key={place._id}  className='w-full min-h-80 hover:scale-105 transition-transform duration-300 rounded-xl overflow-hidden bg-gray-100'>
        <div className='w-[90%] mx-auto mt-2 h-40  hover:scale-105 transition-transform duration-300'>
-      <img src={`http://localhost:5000/uploads/${place.image}`}  className='h-full w-full rounded-xl hover:animate-pulse'/>
+      <img src={`${import.meta.env.VITE_API_URL}/uploads/${place.image}`}  className='h-full w-full rounded-xl hover:animate-pulse'/>
     </div>
        <div className='p-3'>
                 <p className='text-center font-bold text-xl mb-2'>{place.name}</p>
@@ -67,7 +67,7 @@ function Bestplaces() {
       return (
       <div  key={place._id}  className='w-full min-h-80 hover:scale-105 transition-transform duration-300 rounded-xl overflow-hidden bg-gray-100'>
        <div className='w-[90%] mx-auto mt-2 h-40 hover:scale-105 transition-transform duration-300'>
-      <img src={`http://localhost:5000/uploads/${place.image}`}  className='h-full w-full mx-auto object-cover rounded-xl hover:animate-pulse'/>
+      <img src={`${import.meta.env.VITE_API_URL}/uploads/${place.image}`}  className='h-full w-full mx-auto object-cover rounded-xl hover:animate-pulse'/>
     </div>
        <div className='p-3'>
                 <p className='text-center font-bold text-xl mb-2'>{place.name}</p>
@@ -98,7 +98,7 @@ function Bestplaces() {
       return (
       <div  key={place._id}  className='w-full min-h-80 hover:scale-105 transition-transform duration-300 rounded-xl overflow-hidden'>
        <div className='w-[90%] mx-auto mt-2 h-40 md:mx-0 hover:scale-105 transition-transform duration-300'>
-      <img src={`http://localhost:5000/uploads/${place.image}`}  className='h-full w-full rounded-xl hover:animate-pulse'/>
+      <img src={`${import.meta.env.VITE_API_URL}/uploads/${place.image}`}  className='h-full w-full rounded-xl hover:animate-pulse'/>
     </div>
        <div className='p-3'>
                 <p className='text-center font-bold text-xl mb-2'>{place.name}</p>

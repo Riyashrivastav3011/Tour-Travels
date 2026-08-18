@@ -40,7 +40,7 @@ function Packages() {
 
     const showPackages = async () =>{
      try{
-      const res = await axios.get('http://localhost:5000/admin/package')
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/admin/package`)
       setPackages(res.data);
      }catch(err){
       console.log(err);
@@ -87,7 +87,7 @@ function Packages() {
         {/* Single Card */}
         {firstFour.map((pkg , index) =>(
    <div key={index} className="bg-white border border-gray-300 min-h-80 p-2 pb-5 w-[90%] sm:w-[45%] md:w-[22%]">
-          <img src={`http://localhost:5000/uploads/${pkg.image}`}  alt="Europe" className="h-3/4 w-full object-cover" />
+          <img src={`${import.meta.env.VITE_API_URL}/uploads/${pkg.image}`}  alt="Europe" className="h-3/4 w-full object-cover" />
           <div className="flex justify-between items-center mt-2">
            <span> <p className="font-medium font-poppins text-[clamp(11px,2.5vw,14px)]">{pkg.description}</p>
             <p className="text-blue-800 text-[clamp(14px,3vw,20px)]">{pkg.price}</p>
@@ -121,7 +121,7 @@ function Packages() {
         {/* Single Card */}
        {lastFour.map((pkg , index) =>(
        <div key={index} className="bg-white border border-gray-300 min-h-80 p-2 pb-5 w-[90%] sm:w-[45%] md:w-[22%]">
-          <img src={`http://localhost:5000/uploads/${pkg.image}`}  alt="Europe" className="h-3/4 w-full object-cover" />
+          <img src={`${import.meta.env.VITE_API_URL}/uploads/${pkg.image}`}  alt="Europe" className="h-3/4 w-full object-cover" />
           <div className="flex justify-between items-center mt-2">
            <span> <p className="font-poppins text-[clamp(11px,2.5vw,14px)]">{pkg.description}</p>
             <p className="text-blue-800 text-[clamp(14px,3vw,20px)]">{pkg.price}</p>

@@ -12,7 +12,7 @@ function Placedetail() {
    const {id} = useParams();
 
      useEffect(() =>{
-       axios.get(`http://localhost:5000/destinations/place/${id}`)
+       axios.get(`${import.meta.env.VITE_API_URL}/destinations/place/${id}`)
        .then((res) =>{ 
         setPlaces(res.data)
        console.log(res.data);
@@ -31,7 +31,7 @@ function Placedetail() {
           transition={{ duration: 0.6 }}
         >
           <img
-            src={`http://localhost:5000/uploads/${places.image}`}
+            src={`${import.meta.env.VITE_API_URL}/uploads/${places.image}`}
             className="rounded-xl h-100 w-[350px] md:w-[420px] mx-auto shadow-2xl"
             alt={places.description}
           />

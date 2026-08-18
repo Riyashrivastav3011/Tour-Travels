@@ -27,7 +27,7 @@ function Home() {
     
         const showPackages = async () =>{
          try{
-          const res = await axios.get('http://localhost:5000/admin/package')
+          const res = await axios.get(`${import.meta.env.VITE_API_URL}/admin/package`)
           setPackages(res.data);
          }catch(err){
           console.log(err);
@@ -204,7 +204,7 @@ function Home() {
       className="bg-white border border-gray-300 p-2 pb-5 w-[90%] sm:w-[45%] md:w-[22%]"
     >
       <img
-        src={`http://localhost:5000/uploads/${pkg.image}`}
+        src={`${import.meta.env.VITE_API_URL}/uploads/${pkg.image}`}
         alt="Europe"
         className="h-3/4 w-full object-cover"
       />

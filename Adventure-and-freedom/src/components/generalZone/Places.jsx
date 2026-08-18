@@ -13,7 +13,7 @@ function Places() {
     } , []);
   
      const showPlaces = async () =>{
-        const res = await axios.get('http://localhost:5000/destinations/place');
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/destinations/place`);
         setPlaces(res.data);
      }
 
@@ -52,7 +52,7 @@ function Places() {
   return (
     <div key={index} className='carousel-item h-full'>
       <img 
-        src={`http://localhost:5000/uploads/${img.image}`} 
+        src={`${import.meta.env.VITE_API_URL}/uploads/${img.image}`} 
         className='rounded-box w-full md:w-96 object-cover'
         alt={img.name || `Slide ${index + 1}`}
         onClick={() => navigate('/bestplaces')}

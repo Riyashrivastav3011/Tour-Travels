@@ -21,7 +21,7 @@ function Contact() {
    const Submit = async (e) =>{
    e.preventDefault();
     try{
-     await axios.post('http://localhost:5000/admin/query' , query);
+     await axios.post(`${import.meta.env.VITE_API_URL}/admin/query` , query);
       Swal.fire({
              title: "Success!",
              text: "Thanks for Contact us",
