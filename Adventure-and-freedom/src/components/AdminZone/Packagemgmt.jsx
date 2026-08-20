@@ -23,7 +23,7 @@ function Packagemgmt() {
   }, [])
    
   const showPackages = async () =>{
-   const res = await axios.get('http://localhost:5000/admin/package')
+   const res = await axios.get(`${import.meta.env.VITE_API_URL}/admin/package`)
    setPackages(res.data);
   }
 
@@ -39,7 +39,7 @@ function Packagemgmt() {
       data.append("image" , form.file);
      }
      if(pkgid){
-      await axios.put(`http://localhost:5000/admin/package/${pkgid}` , data)
+      await axios.put(`${import.meta.env.VITE_API_URL}/admin/package/${pkgid}` , data)
        Swal.fire({
                    title: "Success!",
                    text: "Package updated",
@@ -48,7 +48,7 @@ function Packagemgmt() {
                  });
     }
     else{
-        await axios.post('http://localhost:5000/admin/package' , data , {
+        await axios.post(`${import.meta.env.VITE_API_URL}/admin/package` , data , {
         headers: { "Content-Type": "multipart/form-data" }
       })
        Swal.fire({
@@ -85,7 +85,7 @@ function Packagemgmt() {
   });
   }
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/admin/package/${id}`);
+    axios.delete(`${import.meta.env.VITE_API_URL}/admin/package/${id}`);
     setPackages(packages.filter((pkg) => pkg.id !== id));
      showPackages();
   };
@@ -196,7 +196,7 @@ function Packagemgmt() {
                         <td className="p-2">{pkg.description}</td>
                        <td className="p-2">
                           <img
-                           src={`http://localhost:5000/uploads/${pkg.image}`} 
+                           src={`${import.meta.env.VITE_API_URL}/uploads/${pkg.image}`} 
                             alt=""
                             className="w-16 h-16 object-cover rounded-lg"
                           />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch, FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
-import Logo from "../../images/Logo.png";
+import Logo from '../../images/logo.png'
 import '../../App.css';
 import { Link } from 'react-router-dom'
 

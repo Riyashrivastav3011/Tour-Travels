@@ -6,7 +6,7 @@ export default function Topbar() {
   const navigate = useNavigate();
   const logout = async () =>{
     try{
-      const response = await axios.post("http://localhost:5000/admin/logout",{} , {withCredentials:true});
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/admin/logout`,{} , {withCredentials:true});
       if(response.data.success){
           navigate("/admin/login");
       }

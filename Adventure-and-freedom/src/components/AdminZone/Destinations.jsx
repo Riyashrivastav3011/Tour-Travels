@@ -25,7 +25,7 @@ const Destinations = () => {
   } , [])
    
   const showPlaces = async () =>{
-    const res = await axios.get('http://localhost:5000/destinations/place');
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/destinations/place`);
     setDestinations(res.data);
   }
   
@@ -44,7 +44,7 @@ const Destinations = () => {
       data.append("image" , form.file);
     }
     if(id){
-      await axios.put(`http://localhost:5000/destinations/place/${id}` , data);
+      await axios.put(`${import.meta.env.VITE_API_URL}/destinations/place/${id}` , data);
       Swal.fire({
        title: "Success!",
        text: "Place updated",
@@ -53,7 +53,7 @@ const Destinations = () => {
       });
 
     }else{
-      await axios.post('http://localhost:5000/destinations/place' , data , {
+      await axios.post(`${import.meta.env.VITE_API_URL}/destinations/place` , data , {
         headers:{"Content-type" :"multipart/form-data"}
       })
        Swal.fire({
@@ -94,7 +94,7 @@ const Destinations = () => {
   }
 
   const deletePlace = (id) =>{
-   axios.delete(`http://localhost:5000/destinations/place/${id}` )
+   axios.delete(`${import.meta.env.VITE_API_URL}/destinations/place/${id}` )
    setDestinations(destinations.filter(des => des.id !== id));
    showPlaces();
   }
@@ -188,7 +188,7 @@ const Destinations = () => {
             key={dest.id}
             className="bg-white rounded-lg shadow-md overflow-hidden"
           >
-            <img  src={`http://localhost:5000/uploads/${dest.image}`}  alt={dest.name} className="w-full h-40 object-cover" />
+            <img  src={`${import.meta.env.VITE_API_URL}/uploads/${dest.image}`}  alt={dest.name} className="w-full h-40 object-cover" />
             <div className="p-4">
               <h3 className="text-gray-700 font-semibold text-lg">{dest.name}</h3>
               <p className="text-gray-500 text-sm">{dest.description}</p>

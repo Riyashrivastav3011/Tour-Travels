@@ -19,7 +19,7 @@ const Adminlogin = () => {
   const Submit = async (e) =>{
     e.preventDefault();
     try{
-      const res = await axios.post('http://localhost:5000/admin/login' , form , {withCredentials:true});
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/admin/login` , form , {withCredentials:true});
        localStorage.setItem('token', res.data.token);
          localStorage.setItem('user', JSON.stringify(res.data.admin));
           Swal.fire({

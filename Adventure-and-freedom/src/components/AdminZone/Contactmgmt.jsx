@@ -6,7 +6,7 @@ function Contactmgmt() {
   const [queries , setQuery] = useState([]);
   
   useEffect(() => {
-    axios.get('http://localhost:5000/admin/query')
+    axios.get(`${import.meta.env.VITE_API_URL}/admin/query`)
     .then((res) =>{
       setQuery(res.data.queries)
     })
@@ -14,7 +14,7 @@ function Contactmgmt() {
    } , [])
    
    const handleUpdate = (id , newStatus) =>{
-    axios.put(`http://localhost:5000/admin/query/${id}` , {status : newStatus})
+    axios.put(`${import.meta.env.VITE_API_URL}/admin/query/${id}` , {status : newStatus})
     .then(() =>{
     setQuery(prev =>
       prev.map(q =>

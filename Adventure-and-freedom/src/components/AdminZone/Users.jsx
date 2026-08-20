@@ -7,7 +7,7 @@ const Users = () => {
   const [users , setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/users')
+    axios.get(`${import.meta.env.VITE_API_URL}/api/users`)
       .then((res) =>{
         setUsers(res.data.users);
         console.log(res.data);
@@ -16,7 +16,7 @@ const Users = () => {
   }, []);
   
   const handleDelete = (id) =>{
-    axios.delete(`http://localhost:5000/api/user/${id}`)
+    axios.delete(`${import.meta.env.VITE_API_URL}/api/user/${id}`)
       .then(()=>{
         setUsers(users.filter(user => user._id !== id))
       })
