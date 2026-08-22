@@ -57,7 +57,7 @@ function Places() {
         alt={img.name || `Slide ${index + 1}`}
         onClick={() => navigate('/bestplaces')}
         />
-    </div>
+    </div>   
   )
 })}
           </div>

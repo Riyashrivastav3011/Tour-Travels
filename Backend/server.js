@@ -19,7 +19,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
-  origin: 'https://tour-travels-frontend-bqeo.onrender.com',
+  origin: "https://tour-travels-frontend-bqeo.onrender.com",
   credentials:true
 }));
  
