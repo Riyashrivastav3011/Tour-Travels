@@ -16,7 +16,7 @@ function Bestplaces() {
   } , []);
 
    const showPlaces = async () =>{
-      const res = await axios.get(`${import.meta.env.API_URL}/destinations/place`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/destinations/place`);
       setPlaces(res.data);
    }
   
