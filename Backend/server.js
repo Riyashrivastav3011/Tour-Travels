@@ -16,12 +16,25 @@ import path from 'path'
 
 dotenv.config();
 const app = express();
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://tour-travels-frontend-bqeo.onrender.com",
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+app.options("*", cors());
+
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({
-  origin: "https://tour-travels-frontend-bqeo.onrender.com",
-  credentials:true
-}));
+
  
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
